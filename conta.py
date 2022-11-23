@@ -1,13 +1,3 @@
-'''Dentro de except coloque um print descritivo falando que você não se conectou
-Logo em seguida faça um if recebendo a variável conn se ela não for nula entre no bloco if com um print descritivo informando que sua conexão está estável
-Crie uma variável chamada cursor recebendo a variável conn e o methodo interno do python .cursor()
-Chame a variável cursor  e o methodo interno do python .execute()
-E faça a criação de uma tabela com id nome sobre nome 
-Chame a variavel conn e o methodo .commit()
-Chame a variável cursor e a função interna do python .close()
-Chame a variável conn e a função interna do python .close()
-'''
-
 import psycopg2
 # criando conexao com o banco
 try:
@@ -21,28 +11,46 @@ except:
 if conn is not None:
     print('Conexao Estavel')
 
-    # referencia pra manipular o banco de dados
+    #referencia pra manipular o banco de dados
     cursor = conn.cursor()
 
-    
-
     #criando tabelas DDL
-    cursor.execute('CREATE TABLE maiara (nome VARCHAR(30), sobrenome VARCHAR(30))')
+    #cursor.execute('CREATE TABLE felipe (id int primary key generated always as identity, nome VARCHAR(30), sobrenome VARCHAR(30), idade int)')
 
-    
-    nome = (input('Digite seu Nome:'))
-    sobrenome = (input('Digite seu sobrenome: '))
+    #inserindo dados na tabela DML
+    #nome = str(input('Digite seu Nome:'))
+    #sobrenome = str(input('Digite seu sobrenome: '))
+    #idade = int(input('Digite sua Idade: '))
 
-    #inserindo dados no BD DML
-    cursor.execute('INSERT INTO felipe (nome, sobrenome) values (%s, %s)', (nome, sobrenome))
+    #cursor.execute('INSERT INTO felipe (nome, sobrenome, idade) VALUES(%s, %s, %s)' , (nome, sobrenome, idade))
 
-    # selecionando dados DQL
+    #Apagando tabelas
+    #cursor.execute('DROP TABLE felipe')
+
+    #Adicionando e Apagando colunas
+    #cursor.execute('ALTER TABLE felipe add COLUMN sobrenome VARCHAR(30)')
+    #cursor.execute('ALTER TABLE felipe DROP COLUMN sobrenome')
+
+    #deletando linha da tabela
+    idd = (input('Digite o ID para deletar: '))
+    cursor.execute('DELETE FROM felipe WHERE id = %s', (idd))
+    count = cursor.rowcount
+    print(count, "Deletado com sucesso")
+
+    #editando linha da tabela
+    #idd = int(input('Digite o ID para alteração: '))
+    #nome = (input('Digite seu Nome:'))
+    #sobrenome = (input('Digite seu sobrenome: '))
+    #idade = (input('Digite sua Idade: '))
+
+    #cursor.execute('UPDATE felipe SET nome = %s, sobrenome = %s, idade = %s WHERE id = %s', (nome, sobrenome, idade, idd))
     
-    cursor.execute('SELECT * FROM felipe')
-    
+    #selecionando dados DQL
+    #cursor.execute('SELECT * FROM felipe')
+
     # variavel refencia para impressao
-    rs = cursor.fetchall()
-    print(rs)
+    #rs = cursor.fetchall()
+    #print(rs)
     
     conn.commit()
     cursor.close()

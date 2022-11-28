@@ -18,11 +18,11 @@ if conn is not None:
     #cursor.execute('CREATE TABLE felipe (id int primary key generated always as identity, nome VARCHAR(30), sobrenome VARCHAR(30), idade int)')
 
     #inserindo dados na tabela DML
-    #nome = str(input('Digite seu Nome:'))
-    #sobrenome = str(input('Digite seu sobrenome: '))
-    #idade = int(input('Digite sua Idade: '))
+    nome = str(input('Digite seu Nome:'))
+    sobrenome = str(input('Digite seu sobrenome: '))
+    idade = int(input('Digite sua Idade: '))
 
-    #cursor.execute('INSERT INTO felipe (nome, sobrenome, idade) VALUES(%s, %s, %s)' , (nome, sobrenome, idade))
+    cursor.execute('INSERT INTO felipe (nome, sobrenome, idade) VALUES(%s, %s, %s)' , (nome, sobrenome, idade))
 
     #Apagando tabelas
     #cursor.execute('DROP TABLE felipe')
